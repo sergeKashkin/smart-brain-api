@@ -26,7 +26,10 @@ const handleRegister = (req,res, db, bcrypt) => {
         .then(trx.commit)
         .catch(trx.rollback)
     })
-    .catch(err => res.status(400).json('Unable to register'));
+    .catch(err => {
+        console.log('transaction error');
+        res.status(400).json('Unable to register');
+    });
 }
 
 module.exports = {
